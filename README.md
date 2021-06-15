@@ -2,7 +2,7 @@
 
 Videoconference web app that enables users to store consensus-based interventions made and agreed by meeting.
 
-**Demo [here!](https://www.google.com)**
+**Demo [here!](https://bc-videochat.herokuapp.com/dashboard)**
 
 ## Features
 
@@ -10,6 +10,11 @@ In the current version:
 * Connect to online meetings created by an administrator user
 * Record relevant interventions during these meetings
 * Validate and listen to the interventions that have been made 
+
+<p align="center">
+  <img src="https://imgur.com/4DOkIhQ.png">
+</p>
+
 * Verify the autenticity of interventions using the blockchain 
 
 ## Behind the scenes
