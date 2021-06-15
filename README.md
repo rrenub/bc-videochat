@@ -10,11 +10,6 @@ In the current version:
 * Connect to online meetings created by an administrator user
 * Record relevant interventions during these meetings
 * Validate and listen to the interventions that have been made 
-
-<p align="center">
-  <img src="https://imgur.com/4DOkIhQ.png">
-</p>
-
 * Verify the autenticity of interventions using the blockchain 
 
 ## Behind the scenes
