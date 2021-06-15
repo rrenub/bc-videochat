@@ -17,6 +17,7 @@ In the current version:
 The project uses the frameworks, services and libraries listed below:
 * **React**: for the frontend (using Ant design component library)
 * **Node.js**: for the backend
+* **WebRTC**: for P2P videoconference communication
 * **Firebase**: for data persistence, user authentication and interventions storage system
 * **bc-videochat-chain**: Using the [bc-videochat-root-peer](https://github.com/rrenub/bc-videochat-peer) and [bc-videochat-peer](https://github.com/rrenub/bc-videochat-root-peer), interventions hashes are store in the this private blockchain to verify the integrity of the interventions validated and stored in the platform
 
