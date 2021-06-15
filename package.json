@@ -1,0 +1,39 @@
+{
+  "name": "BC-VIDEOCHAT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "build": "npm install && cd client && npm install && npm run build",
+    "dev": "nodemon index.js && cross-env ENV='development' npm run start-redis",
+    "start-redis": "redis-server --daemonize yes",
+    "start-worker": "node ./server/worker.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bull": "^3.22.3",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "elliptic": "^6.5.4",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.6.0",
+    "morgan": "^1.10.0",
+    "node-schedule": "^2.0.0",
+    "nodemailer": "^6.5.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "randomstring": "^1.2.1",
+    "redis": "^3.1.2",
+    "socket.io": "^4.0.1",
+    "throng": "^5.0.0",
+    "uuid": "^8.3.2"
+  },
+  "engines": {
+    "node": "14.13.1"
+  }
+}

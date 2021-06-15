@@ -1,0 +1,270 @@
+body, h1, h2, h3, h4, h5, h6{
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+/* CONTENEDOR DE LA INTERFAZ PRINCIPAL */
+
+.main {
+  	margin: 0 1em;
+}
+
+.app_wrapper {
+	background: #FFF;
+	padding: 2rem;
+	min-height: 80vh;
+}
+
+.app_content {
+	margin: 1rem;
+}
+
+.site_layout .site_layout_background {
+  	background: #fff;
+}
+
+.logo {
+	color: #fff;
+	font-weight: bold;
+	padding: 1.5rem;
+	padding-bottom: 1rem;
+}
+
+/* FOOTER */
+.footer_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.github_link {
+  	color: inherit;
+	cursor: pointer;
+}
+
+/* HEADER */
+.header_wrapper {
+	padding: 0 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #FFF;
+}
+
+.header-login {
+	padding: 0 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header-login-text {
+	color: #fff;
+	font-weight: bold;
+}
+
+.company_title {
+	font-size: 1rem;
+	color: #001529;
+	font-weight: bold;
+}
+
+/* VISTA DE AYUDA */
+.help {
+	margin: 1em;
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.content {
+	font-size: medium;
+	margin: 0 4em 1em 0;
+	flex-grow: 1;
+}
+
+.subtitle {
+	margin: 2em 0;
+	text-align: center;
+}
+
+.video {
+	aspect-ratio: 16 / 9;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.video_subtitle {
+  	margin-top: 2em;
+}
+
+/* VISTA DE LOGIN */
+
+.login {
+	margin: 4em 0;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+}
+
+/* VISTA DE VIDEOCHAT */
+.main_videochat {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.main_videos_videochat {
+	flex-grow: 1;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px;
+}
+
+.video_grid {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.user_videochat {
+	height: 300px;
+	width: 400px;
+	object-fit: cover;
+	margin: 4px;
+	background-color: #001529;
+}
+
+@media (max-width:1000px) {
+	.user_videochat {
+		height: 150px;
+		width: 200px;
+		object-fit: cover;
+		margin: 4px;
+		background-color: #001529;
+	}
+}
+
+/* Controles de la videoconferencia (VideoControls)*/
+
+.main_controls {
+	background-color: #001529;
+	display: flex;
+	justify-content: center;
+	padding: 5px;
+}
+
+.main_controls_block {
+	display: flex;
+	margin: 1em;
+}
+
+.recorder {
+	width: 20px;
+	height: auto;
+}
+
+.countdown {
+	font-weight: bold;
+	color: white;
+	margin: 5px 20px;
+}
+
+.loading_meeting {
+	display: flex;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* VISTA DE VALIDACIONES PENDIENTES */
+
+.validation_buttons_wrapper {
+	margin-bottom: 1.5rem;
+}
+
+
+/* Barra de navegación responsiva */
+
+.hideOnMobile {
+	display: none;
+}
+
+@media only screen and (min-width: 768px) {
+	.hideOnMobile {
+	  	display: block;
+	}
+}
+  
+.hideOnDesktop {
+	display: block;
+}
+@media only screen and (min-width: 768px) {
+	.hideOnDesktop {
+	  	display: none;
+	}
+}
+
+/* Vista de login */
+
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
+
+.login-container{
+    display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-content{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	text-align: center;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	border-radius: 20px;
+	padding: 3rem;
+	gap: 1rem
+}
+
+@media screen and (max-width: 1050px){
+	.login-container{
+		grid-gap: 5rem;
+		align-items: center;
+	}
+}
+
+@media screen and (max-width: 1000px){
+	.login-container{
+		grid-template-columns: 1fr;
+	}
+
+	.login-content h2{
+        font-size: 2.4rem;
+	}
+}
+
+@media screen and (max-width: 900px){
+
+	.login-content{
+		justify-content: center;
+	}
+}
+
