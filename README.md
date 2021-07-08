@@ -23,7 +23,7 @@ The project uses the frameworks, services and libraries listed below:
 
 ## Download code and test
 
-
+And please, tell me in case you download it!
 
 ## License
 
