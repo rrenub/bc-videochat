@@ -21,6 +21,10 @@ The project uses the frameworks, services and libraries listed below:
 * **Firebase**: for data persistence, user authentication and interventions storage system
 * **bc-videochat-chain**: Using the [bc-videochat-root-peer](https://github.com/rrenub/bc-videochat-peer) and [bc-videochat-peer](https://github.com/rrenub/bc-videochat-root-peer), interventions hashes are store in the this private blockchain to verify the integrity of the interventions validated and stored in the platform
 
+## Download code and test
+
+
+
 ## License
 
 This work was developed as part of the Final Master Thesis in the Escuela de Ingeniería de Telecomunciación y Electrónica (EITE) of University of Las Palmas de Gran Canaria (ULPGC) by Rubén Delgado González under supervision of Full Professor Álvaro Suárez Sarmiento and Associate Professor Elsa María Macías López, for obtaining the university technical degree of Grado de Ingeniería de Telecomunicación.
