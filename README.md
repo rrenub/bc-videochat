@@ -23,6 +23,8 @@ The project uses the frameworks, services and libraries listed below:
 
 ## License
 
+This work was developed as part of the Final Master Thesis in the Escuela de Ingeniería de Telecomunciación y Electrónica (EITE) of University of Las Palmas de Gran Canaria (ULPGC) by Rubén Delgado González under supervision of Full Professor Álvaro Suárez Sarmiento and Associate Professor Elsa María Macías López, for obtaining the university technical degree of Grado de Ingeniería de Telecomunicación.
+
 Shield: [![CC BY-NC-ND 4.0][cc-by-nc-nd-shield]][cc-by-nc-nd]
 
 This work is licensed under a
