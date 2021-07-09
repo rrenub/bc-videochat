@@ -21,13 +21,37 @@ The project uses the frameworks, services and libraries listed below:
 * **Firebase**: for data persistence, user authentication and interventions storage system
 * **bc-videochat-chain**: Using the [bc-videochat-root-peer](https://github.com/rrenub/bc-videochat-peer) and [bc-videochat-peer](https://github.com/rrenub/bc-videochat-root-peer), interventions hashes are store in the this private blockchain to verify the integrity of the interventions validated and stored in the platform
 
-## Download code and test
+## Download code and test locally
 
-And please, tell me in case you download it!
+Firstly, cloning the project
+
+```
+git clone https://github.com/rrenub/projectGifter.git
+```
+
+Install dependencies
+
+```
+npm install && cd client && npm install
+```
+
+Start backend locally
+
+```
+npm run dev
+```
+
+Start frontend
+
+```
+cd client && npm start
+```
+
+And please, tell me in case you download it! Email to cuenta.rubendelgado@gmail.com
 
 ## License
 
-This work was developed as part of the Final Master Thesis in the Escuela de Ingeniería de Telecomunciación y Electrónica (EITE) of University of Las Palmas de Gran Canaria (ULPGC) by Rubén Delgado González under supervision of Full Professor Álvaro Suárez Sarmiento and Associate Professor Elsa María Macías López, for obtaining the university technical degree of Grado de Ingeniería de Telecomunicación.
+This work was developed as part of the Final Master Thesis in the [Escuela de Ingeniería de Telecomunciación y Electrónica](https://eite.ulpgc.es/index.php/es/) (EITE) of [University of Las Palmas de Gran Canaria](https://www.ulpgc.es/) (ULPGC) by Rubén Delgado González under supervision of Full Professor Álvaro Suárez Sarmiento and Associate Professor Elsa María Macías López, for obtaining the university technical degree of Grado de Ingeniería de Telecomunicación.
 
 Shield: [![CC BY-NC-ND 4.0][cc-by-nc-nd-shield]][cc-by-nc-nd]
 
