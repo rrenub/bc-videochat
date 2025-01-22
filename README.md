@@ -2,8 +2,6 @@
 
 Videoconference web app that enables users to store consensus-based interventions made and agreed by meeting.
 
-**Demo [here!](https://bc-videochat.herokuapp.com/dashboard)**
-
 ## Features
 
 In the current version:
