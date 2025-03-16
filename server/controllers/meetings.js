@@ -5,21 +5,21 @@ const authMiddleware = require('../middleware/authMiddleware')
 meetingsRouter.use(authMiddleware);
 
 /**
- * @route POST /meetings
+ * @route GET /meetings
  * @desc Returns a list of meetings the user is invited to
  * @access Private
  */
-meetingsRouter.post('/', async (req, res) => {
+meetingsRouter.get('/', async (req, res) => {
     const meetings = await meetingService.getAllMeetings(auth.email);
     return res.send(meetings);
 });
 
 /**
- * @route POST /meetings/next-meetings
+ * @route GET /meetings/next-meetings
  * @desc Returns a list of upcoming meetings the user is invited to
  * @access Private
  */
-meetingsRouter.post('/next_meetings', async (req, res) => {
+meetingsRouter.get('/next_meetings', async (req, res) => {
     const nextMeetings = await meetingService.getNextMeetings(auth.email);
     return res.send(nextMeetings);
 });
@@ -38,12 +38,12 @@ meetingsRouter.post('/create-meeting', async (req, res) => {
 });
 
 /**
- * @route POST /meetings/access-meeting
+ * @route GET /meetings/access-meeting
  * @desc Checks if the user has access to a specific meeting
  * @access Private
  * @body {string} meetingID - ID of the meeting
  */
-meetingsRouter.post('/access-meeting', async (req, res) => {
+meetingsRouter.get('/access-meeting', async (req, res) => {
     const { meetingID } = req.body;
 
     const meeting = await meetingService.getMeeting(meetingID);
@@ -59,12 +59,12 @@ meetingsRouter.post('/access-meeting', async (req, res) => {
 });
 
 /**
- * @route POST /meetings/id
+ * @route GET /meetings/id
  * @desc Returns meeting details by ID
  * @access Private
  * @body {string} meetingID - ID of the meeting
  */
-meetingsRouter.post('/id', async (req, res) => {
+meetingsRouter.get('/id', async (req, res) => {
     const { meetingID } = req.body;
     const auth = req.currentUser;
 
