@@ -2,109 +2,75 @@ const usersRouter = require('express').Router();
 const userService = require('../models/users')
 
 /**
- * Ruta: /users/adminlist
- * Descripción: Devuelve una lista de los usuarios registrados en la plataforma
+ * @route GET /users/admins
+ * @description Returns a list of registered users who are administrators
+ * @returns {Object[]} Array of administrator users
  */
- usersRouter.post('/adminlist', async (req, res) => {
-    const auth = req.currentUser;
+usersRouter.get('/admins', async (req, res) => {
+    const userlist = await userService.getUserList();
 
-    if(auth) {
-        if(auth.admin) {
-            const userlist = await userService.getUserList()
-            const admins = userlist.filter(user =>  
-                user.customClaims !== undefined && user.customClaims.admin
-            )
-            console.log(admins)
-            return res.send(admins)
-        }
-    }
+    const admins = userlist.filter(user =>  
+        user.customClaims !== undefined && user.customClaims.admin
+    );
 
-    return res.status(403).send('Not authorized')
-})
+    return res.send(admins);
+});
 
 /**
- * Ruta: /users/userlist
- * Descripción: Devuelve una lista de los usuarios registrados en la plataforma
+ * @route GET /users/users
+ * @description Returns a list of all registered users on the platform
+ * @returns {Object[]} Array of registered users
  */
-usersRouter.get('/userlist', async (req, res) => {
-    const auth = req.currentUser;
-
-    if(auth) {
-        if(auth.admin) {
-            const userlist = await userService.getUserList()
-            return res.send(userlist)
-        }
-    }
-
-    return res.status(403).send('Not authorized')
-})
+usersRouter.get('/users', async (req, res) => {
+    const userlist = await userService.getUserList();
+    return res.send(userlist);
+});
 
 /**
- * Ruta: /users/delete-admin
- * Descripción: Elimina un administrador
+ * @route DELETE /users/admin
+ * @description Removes an administrator role from a user
+ * @param {string} req.body.uid - The UID of the user to be demoted
  */
- usersRouter.post('/delete-admin', async (req, res) => {
-    const { uid } = req.body
-    const auth = req.currentUser;
+usersRouter.delete('/admin', async (req, res) => {
+    const { uid } = req.body;
 
-    console.log(uid)
-
-    if(auth) {
-        if(auth.admin) {
-            await userService.deleteAdmin(uid)
-            return res.send('admin deleted')
-        }
-    }
-
-    return res.status(403).send('Not authorized')
-})
+    await userService.deleteAdmin(uid);
+    return res.send('Admin deleted');
+});
 
 /**
- * Ruta: /users/add-admin
- * Descripción: Otorga el rol de administrador a un usuario
+ * @route POST /users/admin
+ * @description Grants admin role to a user
+ * @param {string} req.body.email - The email of the user to be promoted
  */
- usersRouter.post('/add-admin', async (req, res) => {
-    const { email } = req.body
-    const auth = req.currentUser;
+usersRouter.post('/admin', async (req, res) => {
+    const { email } = req.body;
 
-    //Comprobación si está autenticado y si es administrador
-    if(auth) {
-        if(auth.admin) {
-            try {
-                await userService.addAdmin(email)
-                return res.send('admin added')
-            } catch(error) {
-                console.error(error)
-                return res.status(404).send('User not found')
-            }
-        }
+    try {
+        await userService.addAdmin(email);
+        return res.send('Admin added');
+    } catch(error) {
+        console.error(error);
+        return res.status(404).send('User not found');
     }
-
-    return res.status(403).send('Not authorized')
-})
+});
 
 /**
- * Ruta: /users/add-user
- * Descripción: Crea un nuevo usuario y envía las credenciales a su email
+ * @route POST /users/user
+ * @description Creates a new user and sends credentials to their email
+ * @param {string} req.body.email - The email of the new user
+ * @param {string} req.body.name - The name of the new user
  */
- usersRouter.post('/add-user', async (req, res) => {
-    const { email, name } = req.body
-    const auth = req.currentUser;
+usersRouter.post('/user', async (req, res) => {
+    const { email, name } = req.body;
 
-    if(auth) {
-        if(auth.admin) {
-            try {
-                await userService.addUser(email, name)
-                return res.send('user added')
-            } catch(error) {
-                console.error(error)
-                return res.status(400).send('Error adding user')
-            }
-        }
+    try {
+        await userService.addUser(email, name);
+        return res.send('User added');
+    } catch(error) {
+        console.error(error);
+        return res.status(400).send('Error adding user');
     }
+});
 
-    return res.status(403).send('Not authorized')
-})
-
-
-module.exports = usersRouter
+module.exports = usersRouter;
