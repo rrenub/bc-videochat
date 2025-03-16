@@ -1,98 +1,83 @@
 const meetingsRouter = require('express').Router();
-const meetingService = require('../models/meetings')
+const meetingService = require('../models/meetings');
+const authMiddleware = require('../middleware/authMiddleware')
+
+meetingsRouter.use(authMiddleware);
 
 /**
- * Ruta: /meetings
- * Descripción: Devuelve una lista de las reuniones a las que está invitado el usuario
+ * @route POST /meetings
+ * @desc Returns a list of meetings the user is invited to
+ * @access Private
  */
 meetingsRouter.post('/', async (req, res) => {
-    const auth = req.currentUser;
-
-    if(auth) {
-        const meetings = await meetingService.getAllMeetings(auth.email)
-        return res.send(meetings)
-    }
-    return res.status(403).send('Not authorized')
-})
+    const meetings = await meetingService.getAllMeetings(auth.email);
+    return res.send(meetings);
+});
 
 /**
- * Ruta: /meetings/next-meetings
- * Descripción: Devuelve una lista de las reuniones a las que está invitado el usuario
+ * @route POST /meetings/next-meetings
+ * @desc Returns a list of upcoming meetings the user is invited to
+ * @access Private
  */
- meetingsRouter.post('/next_meetings', async (req, res) => {
-    const auth = req.currentUser;
-    
-    if(auth) {
-        console.log(auth)
-        const nextMeetings = await meetingService.getNextMeetings(auth.email)
-        return res.send(nextMeetings)
-    }
-    return res.status(403).send('Not authorized')
-})
+meetingsRouter.post('/next_meetings', async (req, res) => {
+    const nextMeetings = await meetingService.getNextMeetings(auth.email);
+    return res.send(nextMeetings);
+});
 
 /**
- * Ruta: /meetings/create-meeting
- * Descripción: Crea una reunión
+ * @route POST /meetings/create-meeting
+ * @desc Creates a new meeting
+ * @access Private (Admin only)
+ * @body {object} req.body - Meeting details
  */
 meetingsRouter.post('/create-meeting', async (req, res) => {
-    const auth = req.currentUser;
-
-    if(auth) {
-        if(auth.admin) {
-            await meetingService.createMeeting(req.body)
-            return res.send('meeting created')
-        }
+    if (req.auth.admin) {
+        await meetingService.createMeeting(req.body);
+        return res.send('Meeting created');
     }
-    return res.status(403).send('Not authorized')
-})
-
+});
 
 /**
- * Ruta: /meetings/access-meeting
- * Descripción: Comprueba si el usuario tiene acceso a una reunión
+ * @route POST /meetings/access-meeting
+ * @desc Checks if the user has access to a specific meeting
+ * @access Private
+ * @body {string} meetingID - ID of the meeting
  */
- meetingsRouter.post('/access-meeting', async (req, res) => {
-    const  { meetingID } = req.body
-    const auth = req.currentUser;
+meetingsRouter.post('/access-meeting', async (req, res) => {
+    const { meetingID } = req.body;
 
-    if(auth) {
-        console.log(req.body)
-        const meeting = await meetingService.getMeeting(meetingID)
+    const meeting = await meetingService.getMeeting(meetingID);
 
-        if(meeting) {
-            if(meeting.participants.includes(auth.email)) {
-                return res.send(meeting.accessToken)
-            } else {
-                return res.status(403).send('Not authorized')
-            }
+    if (meeting) {
+        if (meeting.participants.includes(req.auth.email)) {
+            return res.send(meeting.accessToken);
+        } else {
+            return res.status(403).send('Not authorized');
         }
-        return res.status(404).send('Meeting not found')
     }
-    return res.status(403).send('Not authorized')
-})
-
+    return res.status(404).send('Meeting not found');
+});
 
 /**
- * Ruta: /meetings/id
- * Descripción: Devuelve la información de una reunión dado su ID
+ * @route POST /meetings/id
+ * @desc Returns meeting details by ID
+ * @access Private
+ * @body {string} meetingID - ID of the meeting
  */
 meetingsRouter.post('/id', async (req, res) => {
-    const { meetingID } = req.body
+    const { meetingID } = req.body;
     const auth = req.currentUser;
-    
-    if(auth) {
-        const meeting = await meetingService.getMeeting(meetingID)
 
-        if(meeting) {
-            if(meeting.participants.includes(auth.email)) {
-                return res.send(meeting)
-            } else {
-                return res.status(403).send('Not authorized')
-            }
+    const meeting = await meetingService.getMeeting(meetingID);
+
+    if (meeting) {
+        if (meeting.participants.includes(req.auth.email)) {
+            return res.send(meeting);
+        } else {
+            return res.status(403).send('Not authorized');
         }
-        return res.status(404).send('Meeting not found')
     }
-    return res.status(403).send('Not authorized')
-})
+    return res.status(404).send('Meeting not found');
+});
 
-module.exports = meetingsRouter
+module.exports = meetingsRouter;
